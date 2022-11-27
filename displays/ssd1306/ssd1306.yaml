@@ -1,0 +1,17 @@
+esphome:
+  name: st7735
+  platform: ESP8266
+  board: d1_mini
+i2c:
+  sda: D2
+  scl: D1
+logger:
+font:
+  - file: "fonts/NotoSans-Light.ttf"
+    id: noto_font
+    size: 14
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    lambda: |-
+      it.print(0, 0, id(noto_font), "Hello World!");
