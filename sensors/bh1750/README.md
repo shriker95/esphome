@@ -1,4 +1,4 @@
-# AHT10 Sensor
+# BH1750 Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan

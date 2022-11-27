@@ -1,4 +1,4 @@
-# BMP180 Sensor
+# VL53L0X Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan

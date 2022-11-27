@@ -1,4 +1,4 @@
-# BMP180 Sensor
+# QMC5883L Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan

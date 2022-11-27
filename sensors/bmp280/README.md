@@ -1,4 +1,4 @@
-# BMP180 Sensor
+# BMP280 Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan

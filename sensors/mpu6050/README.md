@@ -1,4 +1,4 @@
-# BMP180 Sensor
+# MPU6050 Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan
