@@ -1,5 +1,5 @@
 esphome:
-  name: bmp180
+  name: bmp280
   platform: ESP8266
   board: d1_mini
 logger:
