@@ -1,0 +1,17 @@
+esphome:
+  name: bmp180
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: bmp280
+    temperature:
+      name: "Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Pressure"
+    address: 0x76
+    update_interval: 10s
