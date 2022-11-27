@@ -1,4 +1,4 @@
-# AHT10 Senosr
+# AHT10 Sensor
 Auf Basis von [ESPHome](https://esphome.io/)
 
 ## Schaltplan
