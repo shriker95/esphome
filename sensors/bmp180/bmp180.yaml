@@ -1,0 +1,15 @@
+esphome:
+  name: bmp180
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: bmp085
+    temperature:
+      name: "Temperature"
+    pressure:
+      name: "Pressure"
+    update_interval: 20s

@@ -1,0 +1,15 @@
+esphome:
+  name: aht10
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: aht10
+    temperature:
+      name: "Temperature"
+    humidity:
+      name: "Humidity"
+    update_interval: 60s

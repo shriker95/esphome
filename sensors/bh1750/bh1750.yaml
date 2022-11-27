@@ -1,0 +1,13 @@
+esphome:
+  name: bh1750
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: bh1750
+    name: "BH1750 Illuminance"
+    address: 0x23
+    update_interval: 10s

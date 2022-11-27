@@ -1,0 +1,32 @@
+esphome:
+  name: st7735
+  platform: ESP8266
+  board: d1_mini
+spi:
+  clk_pin: D5
+  mosi_pin: D7
+  miso_pin: D6
+logger:
+font:
+  - file: "fonts/NotoSans-Light.ttf"
+    id: noto_font
+    size: 14
+image:
+  - file: "images/smiley.png"
+    id: smiley
+    type: RGB24
+display:
+  - platform: st7735
+    model: "INITR_18BLACKTAB"
+    reset_pin: D4
+    cs_pin: D3
+    dc_pin: D8
+    rotation: 0
+    device_width: 128
+    device_height: 160
+    col_start: 0
+    row_start: 0
+    update_interval: 5s
+    lambda: |-
+      it.image(0, 0, id(smiley));
+      it.print(50, 131, id(noto_font), "Smile");

@@ -1,0 +1,14 @@
+esphome:
+  name: vl53l0x
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: vl53l0x
+    name: "VL53L0x Distance"
+    address: 0x29
+    update_interval: 1s
+    long_range: true
