@@ -1,0 +1,15 @@
+esphome:
+  name: ccs811
+  platform: ESP8266
+  board: d1_mini
+logger:
+i2c:
+  sda: D2
+  scl: D1
+sensor:
+  - platform: ccs811
+    eco2:
+      name: "CCS811 eCO2 Value"
+    tvoc:
+      name: "CCS811 Total Volatile Organic Compound"
+    update_interval: 20s
