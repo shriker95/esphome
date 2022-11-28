@@ -1,0 +1,63 @@
+esphome:
+  name: !secret "hostname"
+  platform: ESP8266
+  board: d1_mini
+
+logger:
+
+mqtt:
+  broker: !secret "mqtt_server"
+  username: !secret "mqtt_user"
+  password: !secret "mqtt_pwd"
+api:
+  password: !secret "api_pwd"
+ota:
+  password: !secret "ota_pwd"
+wifi:
+  ssid: !secret "wifi_ssid"
+  password: !secret "wifi_pwd"
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret "wifi_ap_ssid"
+    password: !secret "wifi_ap_pwd"
+
+web_server:
+  port: 80
+
+light:
+  - platform: neopixelbus
+    type: GRB
+    variant: WS2812
+    pin: D4
+    num_leds: 12
+    name: "Cristal light"
+    effects:
+      # Customize parameters
+      - random:
+          name: "Slow Random"
+          transition_length: 30s
+          update_interval: 30s
+      - random:
+          name: "Fast Random"
+          transition_length: 4s
+          update_interval: 5s
+      - addressable_rainbow:
+          name: Rainbow
+          speed: 10
+          width: 50
+      - addressable_twinkle:
+          name: Twinkle Effect
+          twinkle_probability: 5%
+          progress_interval: 4ms
+      - addressable_random_twinkle:
+          name: Random Twinkle
+          twinkle_probability: 5%
+          progress_interval: 32ms
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 10%
+          use_random_color: false
+          fade_out_rate: 120
+      - addressable_flicker:
+          name: Flicker
