@@ -1,0 +1,103 @@
+esphome:
+  name: !secret "hostname"
+  platform: ESP8266
+  board: d1_mini
+
+logger:
+
+mqtt:
+  broker: !secret "mqtt_server"
+  username: !secret "mqtt_user"
+  password: !secret "mqtt_pwd"
+api:
+  password: !secret "api_pwd"
+ota:
+  password: !secret "ota_pwd"
+wifi:
+  ssid: !secret "wifi_ssid"
+  password: !secret "wifi_pwd"
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret "wifi_ap_ssid"
+    password: !secret "wifi_ap_pwd"
+
+web_server:
+  port: 80
+  ota: True
+
+i2c:
+  sda: D2
+  scl: D1
+
+sensor:
+  - platform: sht3xd
+    temperature:
+      name: "Office Temperature"
+      id: temp1
+    humidity:
+      name: "Office Humidity"
+      id: hum1
+    address: 0x44
+    update_interval: 600s
+
+  - platform: ccs811
+    eco2:
+      name: "Office eCO2 Value"
+      id: eco2
+    tvoc:
+      name: "Office Total Volatile Organic Compound"
+      id: vola1
+    address: 0x5A
+    update_interval: 600s
+    temperature: temp1
+    humidity: hum1
+    baseline: 0xCAC0
+
+font:
+  - file: "fonts/NotoSans-Light.ttf"
+    id: noto_font
+    size: 14
+
+image:
+  - file: "images/temp.png"
+    id: temp_img
+    resize: 48X48
+    type: BINARY
+  - file: "images/hum.png"
+    id: hum_img
+    resize: 48X48
+    type: BINARY
+  - file: "images/co2.png"
+    id: co2_img
+    resize: 48X48
+    type: BINARY
+  - file: "images/vola.png"
+    id: vola_img
+    resize: 48X48
+    type: BINARY
+
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    rotation: 0°
+    address: 0x3C
+    id: display1
+    pages:
+      - id: page1
+        lambda: |-
+            it.image(8, 0, id(temp_img));
+            it.printf(14, 48, id(noto_font), "%.1f°C", id(temp1).state);
+            it.image(72, 0, id(hum_img));
+            it.printf(80, 48, id(noto_font), "%.1f%%", id(hum1).state);
+      - id: page2
+        lambda: |-
+            it.image(8, 0, id(co2_img));
+            it.printf(0, 48, id(noto_font), "%.1fppm", id(eco2).state);
+            it.image(72, 0, id(vola_img));
+            it.printf(75, 48, id(noto_font), "%.1fppb", id(vola1).state);
+
+interval:
+  - interval: 15s
+    then:
+      - display.page.show_next: display1
+      - component.update: display1
