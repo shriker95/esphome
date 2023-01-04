@@ -1,7 +1,7 @@
 esphome:
   name: !secret "hostname"
   platform: ESP32
-  board: esp32cam
+  board: wemos_d1_mini32
 
 wifi:
   ssid: !secret "wifi_ssid"
@@ -15,8 +15,10 @@ web_server:
 
 logger:
 
+esp32_ble_tracker:
+
 api:
-  password: !secret "api_password"
+  password: !secret "api_pwd"
 
 mqtt:
   broker: !secret "mqtt_server"
